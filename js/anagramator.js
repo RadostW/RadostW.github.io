@@ -21,9 +21,6 @@ String.prototype.ordered = function () {
     return this.split('').sort().join('');
 }
 
-
-var alt_down = false;
-
 window.onload=function(){
 
     document.my_constants["user_guess"] = "";
@@ -46,6 +43,43 @@ window.onload=function(){
         }
     };
 
+    document.getElementById('s0').onclick = function()      
+    {
+        add_letter(document.getElementById('s0').innerHTML);
+    }
+    document.getElementById('s1').onclick = function()      
+    {
+        add_letter(document.getElementById('s1').innerHTML);
+    }
+    document.getElementById('s2').onclick = function()      
+    {
+        add_letter(document.getElementById('s2').innerHTML);
+    }
+    document.getElementById('s3').onclick = function()      
+    {
+        add_letter(document.getElementById('s3').innerHTML);
+    }
+    document.getElementById('s4').onclick = function()      
+    {
+        add_letter(document.getElementById('s4').innerHTML);
+    }
+    document.getElementById('s5').onclick = function()      
+    {
+        add_letter(document.getElementById('s5').innerHTML);
+    }
+    document.getElementById('s6').onclick = function()      
+    {
+        add_letter(document.getElementById('s6').innerHTML);
+    }
+    
+    document.getElementById('d0').onclick = remove_letter;
+    document.getElementById('d1').onclick = remove_letter;
+    document.getElementById('d2').onclick = remove_letter;
+    document.getElementById('d3').onclick = remove_letter;
+    document.getElementById('d4').onclick = remove_letter;
+    document.getElementById('d5').onclick = remove_letter;
+    document.getElementById('d6').onclick = remove_letter;
+    
 }
 
 function set_target_word()
@@ -118,7 +152,12 @@ function make_guess()
     {
         if(document.my_constants["target_word"].ordered() === user_guess.ordered() )
         {
-            alert('Hooray');
+            var solved_display = document.getElementById('solved');
+            solved_display.innerHTML = (
+                document.my_constants["target_word_shuffled"] 
+                + "<br>"
+                + solved_display.innerHTML
+            );
             set_target_word();
             display_given_letters(document.my_constants["target_word_shuffled"]);
         }
