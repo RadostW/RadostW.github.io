@@ -84,6 +84,7 @@ window.onload=function(){
     
     document.getElementById('share').onclick = make_share;
     
+    document.my_constants["solve_times"] = new Array();
 }
 
 function make_share()
@@ -187,13 +188,29 @@ function make_guess()
             var end = Date.now();
             var elapsed = end - document.my_constants["start_time"];
             
+            if(document.my_constants["solve_times"].length == 7)
+            {
+                document.my_constants["solve_times"] = [];
+            }
+            
+            document.my_constants["solve_times"].push(elapsed);
+            
             solved_display.innerHTML = (
-                document.my_constants["target_word_shuffled"] + " " + (elapsed/1000).toFixed(3).padStart(8) + "s"
+                document.my_constants["solve_times"].length + "/7 " 
+                + document.my_constants["target_word_shuffled"] + " " + (elapsed/1000).toFixed(3).padStart(8) + "s"
                 + "\n"
                 + solved_display.innerHTML
             );
             set_target_word();
             display_given_letters(document.my_constants["target_word_shuffled"]);
+            
+            if(document.my_constants["solve_times"].length == 7)
+            {
+                var total_time = document.my_constants["solve_times"].reduce((a, b) => a + b, 0);
+                solved_display.innerHTML = (
+                (7*60000.0 / total_time).toFixed(2).padStart(8) + " anagramów / minutę\n"
+                + solved_display.innerHTML)
+            }
         }
     }
     else

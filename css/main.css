@@ -85,11 +85,11 @@ body {
 
 @keyframes happyshake {
     30% { 
-    transform: translate(0,+10px); 
+    transform: translate(0,-2rem); 
     background-color: #508050;
     }
     60% { 
-    transform: translate(0,-5px); 
+    transform: translate(0,0.5rem); 
     background-color: #508050;
     }
 }
