@@ -212,6 +212,10 @@ function make_guess()
                 + solved_display.innerHTML)
             }
         }
+        else
+        {
+            shake_sad();
+        }
     }
     else
     {
