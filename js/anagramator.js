@@ -208,7 +208,7 @@ function make_guess()
             {
                 var total_time = document.my_constants["solve_times"].reduce((a, b) => a + b, 0);
                 solved_display.innerHTML = (
-                (7*60000.0 / total_time).toFixed(2).padStart(8) + " anagramów / minutę\n"
+                (7*60000.0 / total_time).toFixed(2) + " anagramów / minutę\n"
                 + solved_display.innerHTML)
             }
         }
