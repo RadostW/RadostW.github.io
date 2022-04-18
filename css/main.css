@@ -4,6 +4,25 @@ body {
   font-family: Arial, sans-serif;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
+.share {
+  max-width: 800px;
+  font-family:monospace;
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+  border: 2px solid #333;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.share:hover {
+  background-color: #508050;
+}
+
 .container {
   max-width: 800px;
   display: grid;
@@ -20,4 +39,57 @@ body {
   font-size: 2rem;
   text-transform: uppercase;
   font-family: Arial, sans-serif;
+}
+
+.solved {
+  font-family:monospace;
+  font-size: 1rem;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-family:monospace;
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+}
+
+.sadshaking {
+    animation: sadshake 0.4s ease-in-out;
+}
+.happyshaking {
+    animation: happyshake 0.4s ease-in-out;
+}
+
+@keyframes sadshake {
+    20% { 
+    transform: translate(-4px, 0); 
+    background-color: #805050;
+    }
+    40% { 
+    transform: translate(+4px, 0); 
+    background-color: #805050;
+    }
+    60% { 
+    transform: translate(-4px, 0); 
+    background-color: #805050;
+    }
+    80% { 
+    transform: translate(+4px, 0); 
+    background-color: #805050;
+    }
+}
+
+@keyframes happyshake {
+    30% { 
+    transform: translate(0,+10px); 
+    background-color: #508050;
+    }
+    60% { 
+    transform: translate(0,-5px); 
+    background-color: #508050;
+    }
 }

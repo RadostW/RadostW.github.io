@@ -1,3 +1,5 @@
+// Copyright (C) Radost Waszkiewicz 2022
+
 function rand_element(items) {
     // "~~" for a closest "int"
     return items[~~(items.length * Math.random())];
@@ -37,7 +39,7 @@ window.onload=function(){
         {
             make_guess();
         }
-        if( /^[a-zęóąłżźćś]$/.test(e.key.toLowerCase()) )
+        if( /^[a-zęóąłżźćśń]$/.test(e.key.toLowerCase()) )
         {
     	    add_letter(e.key.toLowerCase());
         }
@@ -80,11 +82,27 @@ window.onload=function(){
     document.getElementById('d5').onclick = remove_letter;
     document.getElementById('d6').onclick = remove_letter;
     
+    document.getElementById('share').onclick = make_share;
+    
+}
+
+function make_share()
+{
+    var solved_text = document.getElementById("solved").innerHTML;
+    reset_animation(document.getElementById("share"));
+    var share_text = (
+    "Anagramowanie\n" +
+    solved_text +
+    "https://radostw.github.io/"
+    )
+    navigator.clipboard.writeText(share_text);
+    document.getElementById("share").innerHTML = "copied!";
 }
 
 function set_target_word()
 {
     var target_word;
+    document.my_constants["start_time"] = Date.now();
     while(true)
     {
         target_word = rand_element(document.my_constants["common_words"]);
@@ -115,11 +133,21 @@ function add_letter(l)
 {
     var user_guess = document.my_constants["user_guess"];
     
-    if(user_guess.length >= 7) return;
+    if(user_guess.length == 7) 
+    {
+        user_guess = "";
+    }
     
     user_guess = user_guess + l;
     document.my_constants["user_guess"] = user_guess;
     display_guess(user_guess);
+    
+    if(user_guess.length == 7)
+    {
+        make_guess();
+        document.my_constants["user_guess"] = user_guess;
+        display_guess(user_guess);
+    }
 }
 
 function remove_letter()
@@ -152,10 +180,16 @@ function make_guess()
     {
         if(document.my_constants["target_word"].ordered() === user_guess.ordered() )
         {
+            //SUCCESS
             var solved_display = document.getElementById('solved');
+            document.getElementById('share').classList.value = "share happyshaking";
+            shake_happy();
+            var end = Date.now();
+            var elapsed = end - document.my_constants["start_time"];
+            
             solved_display.innerHTML = (
-                document.my_constants["target_word_shuffled"] 
-                + "<br>"
+                document.my_constants["target_word_shuffled"] + " " + (elapsed/1000).toFixed(3).padStart(8) + "s"
+                + "\n"
                 + solved_display.innerHTML
             );
             set_target_word();
@@ -164,7 +198,37 @@ function make_guess()
     }
     else
     {
-        alert('Not a legal word');
+        shake_sad();
     }
+}
+
+function shake_sad()
+{
+    ids = ['d0','d1','d2','d3','d4','d5','d6'];
+    function shake_one(id)
+    {
+        let el = document.getElementById(id);
+        el.classList.value = "sadshaking";
+        reset_animation(el);
+    }
+    ids.forEach(id => shake_one(id));
+}
+
+function shake_happy()
+{
+    ids = ['d0','d1','d2','d3','d4','d5','d6'];
+    function shake_one(id)
+    {
+        let el = document.getElementById(id);
+        el.classList.value = "happyshaking";
+        reset_animation(el);
+    }
+    ids.forEach(id => shake_one(id));
+}
+
+function reset_animation(el) {
+  el.style.animation = 'none';
+  el.offsetHeight; /* trigger reflow */
+  el.style.animation = null; 
 }
 
