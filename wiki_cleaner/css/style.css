@@ -53,12 +53,16 @@ div.infobox {
   position:relative;
 }
 
-div.overflowJSON
+div.overflowdisp
 {
     overflow: scroll;
     background-color: #ffffff;
     font-family: 'Courier New', monospace;
-    max-height: 7em;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    font-size: 75%;
 }
 
 pre {
