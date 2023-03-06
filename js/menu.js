@@ -18,6 +18,9 @@ var footer = `
 function setup_header_and_footer(active)
 {
     document.getElementById('menu-div').innerHTML = menu;
-    document.getElementById(active).classList.add('active');
-    document.getElementById('footer-div').innerHTML = footer;
+    if(active != '')
+    {
+        document.getElementById(active).classList.add('active');
+        document.getElementById('footer-div').innerHTML = footer;
+    }    
 }

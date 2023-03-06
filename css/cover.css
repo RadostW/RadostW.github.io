@@ -78,9 +78,14 @@ body {
 }
 
 /*
- * Tables
+ * Tables booktabs style
  */
  
 th {
   border-bottom: 2px solid white;
+  vertical-align: top;
+}
+
+td {
+  vertical-align: top;
 }
