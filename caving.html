@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Radost Waszkiewicz">
+    <title>Radost Waszkiewicz · Other things</title>
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/cover.css" rel="stylesheet">
+
+    <script src="./js/menu.js"></script>
+
+    <script src="./js/table-sort.js"></script>
+
+    <script>
+      window.onload = function(){setup_header_and_footer('')}
+    </script>
+  </head>
+
+  <body class="d-flex min-vh-100 text-center text-white bg-dark">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div id="menu-div"></div>
+      </header>
+
+      <main class="row p-2">
+
+        <div style="text-align: left;">
+          <details class="my-2">
+            <summary>Show/hide hints</summary>
+            You can sort by difficulty and region by clicking columns in the
+            correct order<br>
+
+            Caves are graded (0-5) with respect to rope access difficulty, water
+            related obstacles, climbing and tightness.<br>
+
+            <br>
+
+            Rope (R):
+            <ul>
+              <li>0: no rope needed</li>
+              <li>1,2: simple rigging</li>
+              <li>3,4: pullthroughs, traverses etc.</li>
+              <li>5: tight pitchheads etc.</li>
+            </ul>
+
+            Water (W):
+            <ul>
+              <li>0: dry cave</li>
+              <li>1,2: dry bum</li>
+              <li>3,4: waist deep water or lying in puddles</li>
+              <li>5: requires diving</li>
+            </ul>
+
+            Climbing (C):
+            <ul>
+              <li>0: no climbs</li>
+              <li>1,2: some climbs, belay not needed</li>
+              <li>3,4: some lead climbing</li>
+              <li>5: lead climibing with grades 5a or above</li>
+            </ul>
+
+            Tightness (T):
+            <ul>
+              <li>0: mostly walking</li>
+              <li>1,2: occasional crawl</li>
+              <li>3,4: large people might have difficulty</li>
+              <li>5: black book trips</li>
+            </ul>
+
+          </details>
+        </div>
+
+        <table style="text-align: left;" class="table-sort table-arrows
+          remember-sort">
+          <tr>
+            <th>Trip date</th>
+            <th>Cave name</th>
+            <th>Region</th>
+
+            <th>Description</th>
+
+            <th>R</th>
+            <th>W</th>
+            <th>C</th>
+            <th>T</th>
+          </tr>
+
+          <tr>
+            <td>2022.12.27</td>
+            <td>Aquamole</td>
+            <td>Yorkshire</td>
+
+            <td>Basically nylon highway. Wetsuit is nice in very wet weather.</td>
+            <td>2</td>
+            <td>2</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+
+          <tr>
+            <td>2022.12.28</td>
+            <td>Car Pot</td>
+            <td>Yorkshire</td>
+
+            <td>Tight pitchheads and a long sideways squeeze. Turned around just after the squeeze.</td>
+            <td>5</td>
+            <td>3</td>
+            <td>0</td>
+            <td>5</td>
+          </tr>
+
+          <tr>
+            <td>2022.12.29</td>
+            <td>Cow Pot</td>
+            <td>Yorkshire</td>
+
+            <td>Cow Pot to Lancaster Hole. Pleasant. Don't go to Aardwark by accident.</td>
+            <td>2</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+          </tr>
+
+          <tr>
+            <td>2023.03.04</td>
+            <td>Miętusia</td>
+            <td>Tatry</td>
+
+            <td>Entrance to Błotne Zamki</td>
+
+            <td>2</td>
+            <td>0</td>
+            <td>0</td>
+            <td>2</td>
+          </tr>
+
+          <tr>
+            <td>2023.03.03</td>
+            <td>Kaspowa Niżna</td>
+            <td>Tatry</td>
+
+            <td>Entrance to Złota Kaczka</td>
+
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>0</td>
+          </tr>
+
+          <tr>
+            <td>2023.03.02</td>
+            <td>Czarna</td>
+            <td>Tatry</td>
+
+            <td>Main entrance to Partie Królewskie</td>
+
+            <td>3</td>
+            <td>0</td>
+            <td>3</td>
+            <td>0</td>
+          </tr>
+
+        </table>
+
+      </main>
+
+      <footer class="mt-auto text-white-50"></footer>
+    </div>
+
+
+
+  </body>
+</html>

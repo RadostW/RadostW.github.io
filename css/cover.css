@@ -76,3 +76,11 @@ body {
   color: #fff;
   border-bottom-color: #fff;
 }
+
+/*
+ * Tables
+ */
+ 
+th {
+  border-bottom: 2px solid white;
+}
