@@ -3,7 +3,7 @@ var menu = `
     <a class="nav-link" id="index" href="./index.html">Home</a>
     <a class="nav-link" id="calculators" href="calculators.html">Calculators and tools</a>
     <a class="nav-link" id="publications"
-        href="https://scholar.google.com/citations?user=zhkj1RUAAAAJ">Publications</a>
+        href="./publications.html">Publications</a>
     <a class="nav-link" id="other" href="otherthings.html">Things that changed my
         mind</a>
 </nav>
