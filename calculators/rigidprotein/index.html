@@ -1,0 +1,118 @@
+<HTML>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+<!--
+Copyright 2020 Radost Waszkiewicz
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+SOFTWARE.
+-->    
+    <link rel="stylesheet" href="./css/style.css">
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/cover.css" rel="stylesheet">
+
+    <script src="./js/model_viewer.js" type="module"></script> 
+    <script src="./js/beadspec_parser.js" type="module"></script>
+    <script src="./js/rigid_molecule.js" type="text/javascript"></script>
+    <script src="./js/user_controls.js" type="text/javascript"></script>
+    <script src="./js/external/matrix_inverse.js" type="text/javascript"></script>
+    <script src="./js/invert_posdef.js" type="text/javascript"></script>
+</head>
+<!--
+<body onload="document.getElementById('fileinput').value=null">
+-->
+<body class="text-white bg-dark">
+<div class="infobox" id="container" width=100%>
+<center>
+        <canvas id="beadCanvas"></canvas>
+        </div>
+</center>
+Controls:
+<div class="infobox" id="controls" width=100%>
+<form action="" onsubmit="return false;">
+  <label for="moleculedesc">Enter protein data:</label>
+  <hr>
+  <div style="display: grid; grid-template-columns: auto auto auto;">
+      <span class="gridcell" style="grid-column-start: 1; grid-row-start: 1;">
+        <label>Manual entry: <br><span class="delicate">(PDB format, look <a href="https://www.cgl.ucsf.edu/chimera/docs/UsersGuide/tutorials/pdbintro.html">here</a> for example, script only uses 'ATOM' entries of CA atoms).</span></label>
+      </span>
+      <span class="gridcell" style="grid-column-start: 1; grid-row-start: 2;">
+        <textarea name="moleculedesc" id="moleculedesc" rows="10" style="font-size: 70%; font-family: monospace;" placeholder="=== abbrev. example (1ubq beginning)===
+ATOM      1  N   MET A   1      27.340  24.430   2.614  1.00  9.67           N  
+ATOM      2  CA  MET A   1      26.266  25.413   2.842  1.00 10.38           C  
+ATOM      3  C   MET A   1      26.913  26.639   3.531  1.00  9.62           C  
+ATOM      4  O   MET A   1      27.886  26.463   4.263  1.00  9.62           O  
+ATOM      5  CB  MET A   1      25.112  24.880   3.649  1.00 13.77           C  
+ATOM      6  CG  MET A   1      25.353  24.860   5.134  1.00 16.29           C  
+ATOM      7  SD  MET A   1      23.930  23.959   5.904  1.00 17.17           S  
+ATOM      8  CE  MET A   1      24.447  23.984   7.620  1.00 16.11           C  
+ATOM      9  N   GLN A   2      26.335  27.770   3.258  1.00  9.27           N  
+ATOM     10  CA  GLN A   2      26.850  29.021   3.898  1.00  9.07           C  
+ATOM     11  C   GLN A   2      26.100  29.253   5.202  1.00  8.72           C  
+ATOM     12  O   GLN A   2      24.865  29.024   5.330  1.00  8.22           O  
+ATOM     13  CB  GLN A   2      26.733  30.148   2.905  1.00 14.46           C  
+ATOM     14  CG  GLN A   2      26.882  31.546   3.409  1.00 17.01           C  
+ATOM     15  CD  GLN A   2      26.786  32.562   2.270  1.00 20.10           C  
+ATOM     16  OE1 GLN A   2      27.783  33.160   1.870  1.00 21.89           O  
+ATOM     17  NE2 GLN A   2      25.562  32.733   1.806  1.00 19.49           N  
+=== abbrev. example ==="></textarea>
+      </span>
+<!--
+      <span class="gridcell" style="grid-column-start: 2; grid-row-start: 1;">
+        <label for="moleculedesc">Select file: <br><span class="delicate">(mmCIF or PDB format, decided by file extension).</span></label>
+      </span>
+
+      <span class="gridcell" style="grid-column-start: 2; grid-row-start: 2;">
+      <label class="fileselectbox">
+        Upload a file
+        <input type="file" id="fileinput" name="fileinput" onchange="filechanged(this)">
+      </label>
+      </span>
+-->
+      <span class="gridcell" style="grid-column-start: 2; grid-row-start: 1;">
+        <label for="moleculedesc">PDB database import: <br><span class="delicate">(PDB identifier, for example <i><b>1ubq</b></i> for ubiquitin).</span></label>
+      </span>
+      <span class="gridcell" style="grid-column-start: 2; grid-row-start: 2;">
+        <input type="text" id="pdbid" name="pdbid" placeholder="1ubq">
+      </span>
+  </div>
+  <input type="submit" id="displaymolecule" name="displaymolecule" value="Display molecule" onclick="display_molecule(this.value)">
+  <input type="submit" id="computediffusion" name="computediffusion" value="Compute diffusion" onclick="compute_diffusion(this.value)">
+</form>
+</div>
+Computation results:
+<div class="infobox">
+  <p>Progress: <div class="outerprogressbar"><div class="progressbar" id="computationprogress">0%</div></div></p>
+  <p>Hydrodynamic (Stokes) radius (of translational self diffusion): <div class="overflowJSON" id="hydrodynamicradius"></div></p>
+  <p>Grand mobility matrix: <div class="overflowJSON" id="grandmobilitymatrix"></div></p>
+  <p>Rigid mobility matrix at [0,0,0]: <div class="overflowJSON" id="mobilitymatrixatzero"></div></p>
+  <p>Mobility centre: <div class="overflowJSON" id="mobilitycentre"></div></p>
+  <p>Rigid mobility matrix at mobility centre: <div class="overflowJSON" id="mobilitymatrixatcentre"></div></p>
+  <p>Rigid projection matrix: <div class="overflowJSON" id="rigidprojectionmatrix"></div></p>
+<br>
+</div>
+<hr>
+<div class="infobox" style="font-size: 12px; text-align: center; font-family: Verdana, sans-serif;">
+Copyright (c) Radost Waszkiewicz 2020.<br>
+License: <a href="https://en.wikipedia.org/wiki/MIT_License">MIT license</a>.<br>
+How to cite:<br>
+<i>Rotne-Prager-Yamakawa approximation for different-sized particles in application to macromolecular bead models</i> Pawel Zuk, Eligiusz Wajnryb, Krzysztof Mizerski, and Piotr Szymczak; J. Fluid Mech. (2014).<br>
+</div>
+</body>
+</HTML>

@@ -1,0 +1,78 @@
+<HTML>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+<!--
+Copyright 2020 Radost Waszkiewicz
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+SOFTWARE.
+-->    
+    <link rel="stylesheet" href="./css/style.css">
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/cover.css" rel="stylesheet">
+
+    <script src="./js/model_viewer.js" type="module"></script> 
+    <script src="./js/random_chain.js" type="text/javascript"></script>
+    <script src="./js/user_controls.js" type="text/javascript"></script>
+    <script src="./js/compute_properties.js" type="text/javascript"></script>
+    <script src="./js/external/matrix_inverse.js" type="text/javascript"></script>
+</head>
+<body class="text-white bg-dark">
+<div class="infobox" id="container" width=100%>
+<center>
+        <canvas id="beadCanvas"></canvas>
+        </div>
+</center>
+Controls:
+<div class="infobox" id="controls" width=100%>
+<form action="">
+  <label for="chaindesc">Describe the chain: <span class="delicate">JSON format, list of bead decriptions of form [hydrodynamic size, step size, repeat count]</span></label>
+  <input type="text" id="chaindesc" name="chaindesc" value="[[2,2,1],[1,1,5],[4,4,1]]" onkeyup="parse_description(this.value)">
+  <input type="button" id="dislplaychain" name="displaychain" value="Display chain" onclick="display_chain(this.value)">
+  <label for="ensemblesize">Ensemble size for diffusion computation:</label>
+  <input type="text" id="ensemblesize" name="ensemblesize" value="10">
+  <input type="button" id="ensemblecompute" name="ensemblecompute" value="Compute diffusion" onclick="ensemble_compute(this.value)">
+</form>
+</div>
+Computation results:
+<div class="infobox">
+  <p>Ensemble size: <div class="outerprogressbar"><div class="progressbar" id="ensembleprogress">0%</div></div></p>
+  <p>Parsed chain: <div class="overflowJSON" id="chainlongtext"></div></p>
+  <p>Hydrodynamic radius estimate: <div class="overflowJSON" id="chainradius"></div></p>
+  <p>Diffusion coefficient estimate: <div class="overflowJSON" id="chaindiffusion"></div></p>
+  <p>Inverse mobility matrix: <div class="overflowJSON" id="chaininvmobility"></div></p>
+  <p>Mobility centre coefficients: <div class="overflowJSON" id="chainmobilitycentre"></div></p>
+<br>
+</div>
+<hr>
+<div class="infobox" style="font-size: 12px; text-align: center; font-family: Verdana, sans-serif;">
+Copyright (c) Radost Waszkiewicz 2020.<br>
+License: <a href="https://en.wikipedia.org/wiki/MIT_License">MIT license</a>
+</div>
+<div class="infobox" style="font-size: 12px; text-align: left; font-family: Verdana, sans-serif;">
+How to cite:<br>
+<em>Hydrodynamic Radii of Intrinsically Disordered Proteins: Fast Prediction by Minimum Dissipation Approximation and Experimental Validation.</em>
+R. Waszkiewicz, A. Michaś, M. K. Białobrzewski, B. P. Klepka, M. K. Cieplak-Rotowska, Z. Staszałek, B. Cichocki, M. Lisicki, P. Szymczak, and A. Niedźwiecka; <em>J. Phys. Chem. Lett.</em> (2024)<br>
+</div>
+<div class="infobox" style="font-size: 12px; text-align: left; font-family: Verdana, sans-serif;">
+More powerfull verion on GitHub:<br>
+<a href="https://github.com/RadostW/glm-mda-diffusion">GitHub: RadostW/glm-mda-diffusion</a><br>
+</div>
+</body>
+</HTML>
