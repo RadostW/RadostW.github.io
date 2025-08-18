@@ -5,73 +5,177 @@
     <meta name="author" content="Radost Waszkiewicz">
     <title>Radost Waszkiewicz · Calculators</title>
 
+    <!-- Styles -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/cover.css" rel="stylesheet">
 
+    <!-- Scripts -->
     <script src="./js/menu.js"></script>
     <script>
-      window.onload = function(){setup_header_and_footer('calculators')}
+      window.onload = function () {
+        setup_header_and_footer('calculators');
+      };
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RL08VQNFG8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-RL08VQNFG8');
     </script>
   </head>
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RL08VQNFG8"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-RL08VQNFG8');
-  </script>  
-
-  <body class="d-flex h-100 text-center text-white bg-dark">
+  <body class="d-flex text-white bg-dark">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
       <header class="mb-auto">
         <div id="menu-div"></div>
       </header>
 
-      <main class="px-5">
-        <p><a class="btn btn-lg btn-secondary fw-bolder border-white bg-white
-          w-100" href="https://pychastic.readthedocs.io/en/latest/">Pychastic:
-            a SDE solver.</a></p>
-        <p><a class="btn btn-lg btn-secondary fw-bolder border-white bg-white
-          w-100" href="https://github.com/RadostW/glm-mda-diffusion/">GLM+MDA:
-            a diffusion coefficient calculator.</a></p>            
-        <p><a class="btn btn-secondary fw-bold border-white bg-white
-          w-100"
-            href="./interactive/calculators/rigidmolecule/">Diffusion
-            of rigid molecule in bead
-            approximation.</a></p>
-        <p><a class="btn btn-secondary fw-bold border-white bg-white
-          w-100"
-            href="./interactive/calculators/rigidprotein/">Diffusion
-            of rigid protein in bead
-            approximation.</a></p>
-        <p><a class="btn btn-secondary fw-bold border-white bg-white
-          w-100"
-            href="./interactive/calculators/softchain/">Diffusion
-            of flexible bead chains.</a></p>
-        <br>
-        <p><a class="btn btn-secondary fw-bold border-white bg-white
-            w-100" href="./interactive/anagramowanie/index.html">Bingo practice for Polish
-            Scrabble.</a></p>
-        <p><a class="btn btn-secondary fw-bold border-white bg-white
-            w-100" href="https://radostw.github.io/graniowki/">Practice
-            topography
-            of the Tatras.</a></p>
-        <br>
-        <p><a class="btn btn-secondary fw-bold border-white bg-white
-            w-100" href="https://radostw.github.io/whoplotter/">Creator of SVG
-            country-colored world maps for Wikipedia.</a></p>
-        <p><a class="btn btn-secondary fw-bold border-white bg-white
-            w-100"
-            href="https://radostw.github.io/whoplotter/poland_voivodeships.html">Creator
-            of SVG
-            voievodship-colored Poland maps for Wikipedia.</a></p>
+      <main class="px-3 py-2">
+        <div class="container">
+
+          <section class="my-5"></section>
+
+          <!-- Pychastic -->
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-2  position-relative bg-dark">
+            <div class="col p-4 d-flex flex-column">
+              <h4 class="mb-0 text-info">Pychastic</h4>
+              <p class="card-text mb-auto">
+                A solver for stochastic differential equations (SDEs) written in Python and JAX.
+                Designed for small-scale Brownian dynamics simulations. Compatible with PyGRPY – Rotne-Prager mobility tensors.
+              </p>
+              <a href="https://pychastic.readthedocs.io/en/latest/" class="stretched-link">Documentation and tutorial</a>
+            </div>
+            <div class="col-auto d-none d-lg-block p-4">
+              <img src="./graphics/dna.gif" class="img-fluid" style="max-height:100px;" alt="DNA graphic">
+            </div>
+          </div>
+
+          <!-- GLM + MDA -->
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-2  position-relative bg-dark">
+            <div class="col p-4 d-flex flex-column">
+              <h4 class="mb-0 text-info">GLM + MDA</h4>
+              <p class="card-text mb-auto">
+                A hydrodynamic radius calculator (diffusive size) for intrinsically disordered proteins (IDPs).
+                Computes conformations and hydrodynamic size using only the amino acid sequence in seconds.
+              </p>
+              <a href="https://github.com/RadostW/glm-mda-diffusion" class="stretched-link">GitHub repository and documentation</a>
+            </div>
+            <div class="col-auto d-none d-lg-block p-4">
+              <img src="./graphics/glm_banner.png" class="img-fluid" style="max-height:100px;" alt="GLM MDA banner">
+            </div>
+          </div>
+
+          <section class="my-5"></section>
+
+          <!-- Hydrodynamic size (rigid molecule) -->
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-2  position-relative bg-dark">
+            <div class="col p-4 d-flex flex-column">
+              <h4 class="mb-0">Hydrodynamic size (rigid molecule)</h4>
+              <p class="card-text mb-auto">
+                A hydrodynamic radius calculator (diffusive size) of rigid molecules from the bead approximation. Works inside your browser.
+              </p>
+              <a href="./interactive/calculators/rigidmolecule" class="stretched-link">Interactive website</a>
+            </div>
+            <div class="col-auto d-none d-lg-block p-4">
+              <img src="./graphics/rigid_banner.png" class="img-fluid" style="max-height:100px;" alt="Rigid molecule banner">
+            </div>
+          </div>
+
+          <!-- Hydrodynamic size (rigid protein) -->
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-2  position-relative bg-dark">
+            <div class="col p-4 d-flex flex-column">
+              <h4 class="mb-0">Hydrodynamic size (rigid protein)</h4>
+              <p class="card-text mb-auto">
+                A hydrodynamic radius calculator (diffusive size) of rigid proteins from PDB ID. Works inside your browser.
+              </p>
+              <a href="./interactive/calculators/rigidprotein/" class="stretched-link">Interactive website</a>
+            </div>
+            <div class="col-auto d-none d-lg-block p-4">
+              <img src="./graphics/rigid_protein_banner.png" class="img-fluid" style="max-height:100px;" alt="Rigid protein banner">
+            </div>
+          </div>
+
+          <!-- Hydrodynamic size (soft chains) -->
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-2  position-relative bg-dark">
+            <div class="col p-4 d-flex flex-column">
+              <h4 class="mb-0">Hydrodynamic size (soft chains)</h4>
+              <p class="card-text mb-auto">
+                A hydrodynamic radius calculator (diffusive size) of soft chains. Works inside your browser.
+              </p>
+              <a href="./interactive/calculators/softchain/" class="stretched-link">Interactive website</a>
+            </div>
+            <div class="col-auto d-none d-lg-block p-4">
+              <img src="./graphics/soft_chain_banner.png" class="img-fluid" style="max-height:100px;" alt="Soft chain banner">
+            </div>
+          </div>
+
+          <section class="my-5"></section>
+
+          <!-- Bingo practice -->
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-2  position-relative bg-dark">
+            <div class="col p-4 d-flex flex-column">
+              <h4 class="mb-0">Bingo practice</h4>
+              <p class="card-text mb-auto">
+                Practice for Polish Scrabble with a bingo word generator.
+              </p>
+              <a href="./interactive/anagramowanie/index.html" class="stretched-link">Website practice tool</a>
+            </div>
+            <div class="col-auto d-none d-lg-block p-4">
+              <img src="./graphics/bingo_banner.png" class="img-fluid" style="max-height:100px;" alt="Bingo practice banner">
+            </div>
+          </div>
+
+          <!-- Tatras topography practice -->
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-2  position-relative bg-dark">
+            <div class="col p-4 d-flex flex-column">
+              <h4 class="mb-0">Tatras topography practice</h4>
+              <p class="card-text mb-auto">
+                Interactive practice of the topography of the Tatras mountains.
+              </p>
+              <a href="https://radostw.github.io/graniowki/" class="stretched-link">Website practice tool</a>
+            </div>
+            <div class="col-auto d-none d-lg-block p-4">
+              <img src="./graphics/tatras_banner.png" class="img-fluid" style="max-height:100px;" alt="Tatras topography banner">
+            </div>
+          </div>
+
+          <!-- World map creator -->
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-2  position-relative bg-dark">
+            <div class="col p-4 d-flex flex-column">
+              <h4 class="mb-0">World map creator</h4>
+              <p class="card-text mb-auto">
+                Creates SVG country-colored world maps. Supports various codes.
+              </p>
+              <a href="https://radostw.github.io/whoplotter/" class="stretched-link">Interactive website</a>
+            </div>
+            <div class="col-auto d-none d-lg-block p-4">
+              <img src="./graphics/world_map_banner.png" class="img-fluid" style="max-height:100px;" alt="World map banner">
+            </div>
+          </div>
+
+          <!-- Poland voivodeship maps -->
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-2  position-relative bg-dark">
+            <div class="col p-4 d-flex flex-column">
+              <h4 class="mb-0">Poland voivodeship maps</h4>
+              <p class="card-text mb-auto">
+                Creates SVG voivodship-colored Poland maps. Good for making Wikipedia illustrations.
+              </p>
+              <a href="https://radostw.github.io/whoplotter/poland_voivodeships.html" class="stretched-link">Interactive website</a>
+            </div>
+            <div class="col-auto d-none d-lg-block p-4">
+              <img src="./graphics/poland_map_banner.png" class="img-fluid" style="max-height:100px;" alt="Poland map banner">
+            </div>
+          </div>
+
+        </div>
       </main>
 
-      <footer id="footer-div" class="mt-auto text-white-50"></footer>
+      <!-- <footer id="footer-div" class="text-center mt-auto text-white-50"></footer> -->
     </div>
 
+    <script src="./js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
